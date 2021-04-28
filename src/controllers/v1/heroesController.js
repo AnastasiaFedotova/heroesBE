@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { v4 } = require('uuid');
-const service = require('../service/service.js');
+const service = require('../../services/heroesService.js');
 const api = Router();
 
 api.get('/', async (req, res, next) => {
