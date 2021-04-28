@@ -4,9 +4,8 @@ const service = require('../../services/heroesService.js');
 const api = Router();
 
 api.get('/', async (req, res, next) => {
-    const heroes = await service.readListHeroes();
+    const heroes = await service.read();
     res.json(heroes);
-    console.log(heroes)
 });
 
 api.post('/', async (req, res, next) => {
@@ -14,14 +13,14 @@ api.post('/', async (req, res, next) => {
     const { body } = req;
 
     body.id = id;
-    const newBody = await service.createHero(body);
+    const newBody = await service.add(body);
 
     res.json(newBody);
 });
 
 api.put('/:id', async (req, res, next) => {
     const { body } = req;
-    const newBody = await service.updateHero({
+    const newBody = await service.update({
         ...body,
         id: req.params.id,
     });
@@ -30,7 +29,7 @@ api.put('/:id', async (req, res, next) => {
 });
 
 api.delete('/:id', async (req, res, next) => {
-    await service.removeHero(req.params.id);
+    await service.remove(req.params.id);
     res.sendStatus(204).json(null);
 });
 

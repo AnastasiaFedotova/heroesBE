@@ -28,7 +28,7 @@ sequelize.sync().then(result=>{
   })
   .catch(err => console.log(err));
 
-const readListHeroes = () => {
+const read = () => {
     return Hero.findAll({where:
         {_deletedAt: {
             [Op.is]: null
@@ -36,7 +36,7 @@ const readListHeroes = () => {
     }});
 };
 
-const createHero = ({id, name}) => {
+const add = ({id, name}) => {
     const res = Hero.create({
         id: id,
         name: name,
@@ -46,7 +46,7 @@ const createHero = ({id, name}) => {
     return res;
 };
 
-const updateHero = ({id, name, _deletedAt}) => {
+const update = ({id, name, _deletedAt}) => {
     const valuesToUpdate = {
         name,
         _deletedAt,
@@ -66,15 +66,15 @@ const updateHero = ({id, name, _deletedAt}) => {
     })
 };
 
-const removeHero = async (id) => {
+const remove = async (id) => {
     return await updateHero({ id, _deletedAt: Date.now() });
 };
 
 const service = {
-    readListHeroes,
-    createHero,
-    updateHero,
-    removeHero,
+    read,
+    add,
+    update,
+    remove,
 };
 
 module.exports = service;
