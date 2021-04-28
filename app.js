@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const router = require('./routers/api');
+const router = require('./src/controllers/heroesControllers');
 const app = express();
 const port = process.env.PORT || 3000;
 
