@@ -13,19 +13,19 @@ api.post('/', async (req, res, next) => {
     const { body } = req;
 
     body.id = id;
-    const newBody = await service.add(body);
+    const newHero = await service.add(body);
 
-    res.json(newBody);
+    res.json(newHero);
 });
 
 api.put('/:id', async (req, res, next) => {
     const { body } = req;
-    const newBody = await service.update({
+    const newHero = await service.update({
         ...body,
         id: req.params.id,
     });
 
-    res.json(newBody);
+    res.json(newHero);
 });
 
 api.delete('/:id', async (req, res, next) => {

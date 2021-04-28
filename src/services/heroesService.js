@@ -51,7 +51,7 @@ const update = ({id, name, _deletedAt}) => {
         name,
         _deletedAt,
     };
-    const omited = Object.keys(valuesToUpdate).reduce((accum, current) => {
+    const changedValues = Object.keys(valuesToUpdate).reduce((accum, current) => {
         if (valuesToUpdate[current] !== undefined) {
             accum[current] = valuesToUpdate[current];
         }
@@ -59,7 +59,7 @@ const update = ({id, name, _deletedAt}) => {
         return accum;
     }, {});
 
-    return Hero.update(omited, {
+    return Hero.update(changedValues, {
         where: {
             id: id
         }
@@ -67,7 +67,7 @@ const update = ({id, name, _deletedAt}) => {
 };
 
 const remove = async (id) => {
-    return await updateHero({ id, _deletedAt: Date.now() });
+    return await update({ id, _deletedAt: Date.now() });
 };
 
 const service = {
