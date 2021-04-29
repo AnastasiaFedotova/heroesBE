@@ -1,3 +1,4 @@
+const { Sequelize, Op, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
 const Hero = sequelize.define('heroes', {
